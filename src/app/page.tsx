@@ -1,10 +1,12 @@
-import { Button, Text } from "@mantine/core";
+import TestLoginButton from "@/components/TestLoginButton";
+import { Container, Text } from "@mantine/core";
 
 export default function IndexPage() {
   return (
     <div>
       <Text>Hello</Text>
-      <Button>Hello2</Button>
+      <TestLoginButton />
+      <Container></Container>
     </div>
   );
 }
