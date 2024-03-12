@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
 import ProfileCard from "./ProfileCard";
 import SignInCard from "./SignInCard";
+import NewPostButton from "./NewPostButton";
 
 const links = [
   {
@@ -79,6 +80,9 @@ export default function Layout({ children }: PropsWithChildren) {
             />
           ))}
         </ScrollArea>
+        <Box pos="absolute" bottom={80} left={0} right={0} p="md">
+          <NewPostButton />
+        </Box>
         <Box
           pos="absolute"
           bottom={0}
