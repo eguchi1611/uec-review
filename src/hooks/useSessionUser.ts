@@ -1,7 +1,7 @@
 import { useSession } from "./useSession";
 
 export function useSessionUser() {
-  const session = useSession();
+  const { session, loading } = useSession();
 
-  return session?.user ?? null;
+  return { user: session?.user ?? null, loading };
 }

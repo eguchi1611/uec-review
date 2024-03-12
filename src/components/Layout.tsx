@@ -1,5 +1,7 @@
 "use client";
 
+import { useProfileUpdate } from "@/hooks/useProfileUpdate";
+import { useSessionUser } from "@/hooks/useSessionUser";
 import {
   AppShell,
   Box,
@@ -9,13 +11,38 @@ import {
   ScrollArea,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { IconSearch, IconTrendingUp } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
 import ProfileCard from "./ProfileCard";
+import SignInCard from "./SignInCard";
+
+const links = [
+  {
+    href: "/",
+    label: "おすすめレビュー",
+    icon: <IconTrendingUp size="1rem" />,
+  },
+  {
+    href: "/search",
+    label: "検索",
+    icon: <IconSearch size="1rem" />,
+  },
+  {
+    href: "/test",
+    label: "テストページ",
+    icon: <IconSearch size="1rem" />,
+  },
+];
 
 export default function Layout({ children }: PropsWithChildren) {
   const [opened, { toggle }] = useDisclosure();
+  const { loading, user } = useSessionUser();
+  useProfileUpdate();
+
+  const pathname = usePathname();
 
   return (
     <AppShell
@@ -39,8 +66,18 @@ export default function Layout({ children }: PropsWithChildren) {
       </AppShell.Header>
       <AppShell.Navbar p="md">
         <ScrollArea h="calc(100dvh - var(--app-shell-header-offset, 0px) - var(--app-shell-footer-offset, 0px) - 112px)">
-          <NavLink href="/" label="おすすめレビュー" component={Link} />
-          <NavLink href="/search" label="検索" component={Link} />
+          {links.map(({ href, icon, label }) => (
+            <NavLink
+              key={href}
+              href={href}
+              label={label}
+              component={Link}
+              leftSection={icon}
+              active={
+                pathname !== "/" ? href.startsWith(pathname) : href === "/"
+              }
+            />
+          ))}
         </ScrollArea>
         <Box
           pos="absolute"
@@ -49,11 +86,11 @@ export default function Layout({ children }: PropsWithChildren) {
           right={0}
           style={{
             borderTop:
-              "calc(0.0625rem* var(--mantine-scale)) solid var(--app-shell-border-color);",
+              "calc(0.0625rem* var(--mantine-scale)) solid var(--app-shell-border-color)",
           }}
           h={80}
         >
-          <ProfileCard />
+          {loading || user !== null ? <ProfileCard /> : <SignInCard />}
         </Box>
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSessionUser } from "./useSessionUser";
 
 export function useUser() {
-  const sessionUser = useSessionUser();
+  const { user: sessionUser } = useSessionUser();
   const [data, setData] = useState<Tables<"users"> | null>(null);
 
   useEffect(() => {

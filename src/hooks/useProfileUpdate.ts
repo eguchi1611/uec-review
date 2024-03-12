@@ -6,7 +6,6 @@ export function useProfileUpdate() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event);
       const user = session?.user;
       if (user) {
         if (event === "INITIAL_SESSION") {

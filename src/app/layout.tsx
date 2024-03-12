@@ -1,9 +1,11 @@
-import "@mantine/core/styles.css";
-
 import { theme } from "@/theme";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { PropsWithChildren } from "react";
 import "./globals.css";
+
+import "@mantine/core/styles.css";
+import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
@@ -12,7 +14,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <ColorSchemeScript />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          {children}
+          <Notifications />
+        </MantineProvider>
       </body>
     </html>
   );

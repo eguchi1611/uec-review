@@ -3,7 +3,7 @@ import { Session } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
 export function useSession() {
-  const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useState<Session | null | "loading">("loading");
 
   useEffect(() => {
     const {
@@ -17,5 +17,8 @@ export function useSession() {
     };
   }, []);
 
-  return session;
+  return {
+    session: session !== "loading" && session !== null ? session : null,
+    loading: session === "loading",
+  };
 }
