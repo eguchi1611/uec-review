@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:dev": "next build && serve out",
     "lint": "next lint",
     "format": "prettier . --write"
   },
@@ -32,6 +33,7 @@
     "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "3.2.5",
+    "serve": "^14.2.1",
     "typescript": "^5"
   }
 }
