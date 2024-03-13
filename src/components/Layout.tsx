@@ -3,22 +3,29 @@
 import { useProfileUpdate } from "@/hooks/useProfileUpdate";
 import { useSessionUser } from "@/hooks/useSessionUser";
 import {
+  ActionIcon,
   AppShell,
   Box,
   Burger,
   Group,
   NavLink,
   ScrollArea,
+  Space,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch, IconTrendingUp } from "@tabler/icons-react";
+import {
+  IconBrightness,
+  IconSearch,
+  IconTrendingUp,
+} from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PropsWithChildren } from "react";
+import NewPostButton from "./NewPostButton";
 import ProfileCard from "./ProfileCard";
 import SignInCard from "./SignInCard";
-import NewPostButton from "./NewPostButton";
 
 const links = [
   {
@@ -40,6 +47,7 @@ const links = [
 
 export default function Layout({ children }: PropsWithChildren) {
   const [opened, { toggle }] = useDisclosure();
+  const { toggleColorScheme } = useMantineColorScheme();
   const { loading, user } = useSessionUser();
   useProfileUpdate();
 
@@ -63,6 +71,10 @@ export default function Layout({ children }: PropsWithChildren) {
               style={{ height: 24, width: "auto", display: "block" }}
             />
           </Link>
+          <Space mr="auto" />
+          <ActionIcon onClick={toggleColorScheme} variant="transparent">
+            <IconBrightness />
+          </ActionIcon>
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">

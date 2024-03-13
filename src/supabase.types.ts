@@ -9,29 +9,88 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      reviews: {
+      classes: {
         Row: {
-          content: string | null;
+          id: number;
+          name: string;
+        };
+        Insert: {
+          id?: number;
+          name: string;
+        };
+        Update: {
+          id?: number;
+          name?: string;
+        };
+        Relationships: [];
+      };
+      grades: {
+        Row: {
           created_at: string;
           id: number;
+          name: string;
+          score: number;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          name: string;
+          score: number;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          name?: string;
+          score?: number;
+        };
+        Relationships: [];
+      };
+      reviews: {
+        Row: {
+          class_id: number;
+          content: string | null;
+          created_at: string;
+          grade_id: number | null;
+          id: number;
+          teacher: string | null;
           updated_at: string;
           user_id: string;
         };
         Insert: {
+          class_id: number;
           content?: string | null;
           created_at?: string;
+          grade_id?: number | null;
           id?: number;
+          teacher?: string | null;
           updated_at?: string;
-          user_id: string;
+          user_id?: string;
         };
         Update: {
+          class_id?: number;
           content?: string | null;
           created_at?: string;
+          grade_id?: number | null;
           id?: number;
+          teacher?: string | null;
           updated_at?: string;
           user_id?: string;
         };
         Relationships: [
+          {
+            foreignKeyName: "public_reviews_class_id_fkey";
+            columns: ["class_id"];
+            isOneToOne: false;
+            referencedRelation: "classes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "public_reviews_grade_id_fkey";
+            columns: ["grade_id"];
+            isOneToOne: false;
+            referencedRelation: "grades";
+            referencedColumns: ["id"];
+          },
           {
             foreignKeyName: "reviews_user_id_fkey";
             columns: ["user_id"];
@@ -50,7 +109,7 @@ export type Database = {
         };
         Insert: {
           avatar_url?: string | null;
-          id: string;
+          id?: string;
           name?: string | null;
           user_name?: string | null;
         };

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@mantine/core": "^7.6.1",
+    "@mantine/form": "^7.6.2",
     "@mantine/hooks": "^7.6.1",
     "@mantine/notifications": "^7.6.2",
     "@supabase/supabase-js": "^2.39.8",
