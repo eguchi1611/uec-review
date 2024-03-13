@@ -47,31 +47,34 @@ export type Database = {
       };
       reviews: {
         Row: {
-          class_id: number;
+          class_id: number | null;
           content: string | null;
           created_at: string;
           grade_id: number | null;
           id: number;
+          published: boolean;
           teacher: string | null;
           updated_at: string;
           user_id: string;
         };
         Insert: {
-          class_id: number;
+          class_id?: number | null;
           content?: string | null;
           created_at?: string;
           grade_id?: number | null;
           id?: number;
+          published: boolean;
           teacher?: string | null;
           updated_at?: string;
           user_id?: string;
         };
         Update: {
-          class_id?: number;
+          class_id?: number | null;
           content?: string | null;
           created_at?: string;
           grade_id?: number | null;
           id?: number;
+          published?: boolean;
           teacher?: string | null;
           updated_at?: string;
           user_id?: string;

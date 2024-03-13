@@ -4,6 +4,7 @@ import { useProfileUpdate } from "@/hooks/useProfileUpdate";
 import { useSessionUser } from "@/hooks/useSessionUser";
 import {
   ActionIcon,
+  Affix,
   AppShell,
   Box,
   Burger,
@@ -92,9 +93,6 @@ export default function Layout({ children }: PropsWithChildren) {
             />
           ))}
         </ScrollArea>
-        <Box pos="absolute" bottom={80} left={0} right={0} p="md">
-          <NewPostButton />
-        </Box>
         <Box
           pos="absolute"
           bottom={0}
@@ -109,7 +107,14 @@ export default function Layout({ children }: PropsWithChildren) {
           {loading || user !== null ? <ProfileCard /> : <SignInCard />}
         </Box>
       </AppShell.Navbar>
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main>
+        {children}
+        {!opened && (
+          <Affix position={{ bottom: 20, right: 20 }}>
+            <NewPostButton />
+          </Affix>
+        )}
+      </AppShell.Main>
     </AppShell>
   );
 }
