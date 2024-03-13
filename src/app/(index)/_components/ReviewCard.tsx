@@ -2,6 +2,7 @@
 
 import { UserCard } from "@/components/UserCard";
 import { ClassBadge } from "@/components/reviews/ClassBadge";
+import { GradeBadge } from "@/components/reviews/GradeBadge";
 import useReviewHandler from "@/hooks/useReviewHandler";
 import { Review } from "@/lib/db";
 import { showErrorNotification } from "@/utils/notifications";
@@ -16,7 +17,8 @@ type Props = {
 };
 
 export default function ReviewCard({ review }: Props) {
-  const { user_id, id, content, users, classes, class_id } = review ?? {};
+  const { user_id, id, content, users, classes, class_id, grade } =
+    review ?? {};
   const { avatar_url, name: userName } = users ?? {};
   const { name: className } = classes ?? {};
   const { deletePost } = useReviewHandler();
@@ -70,6 +72,7 @@ export default function ReviewCard({ review }: Props) {
       <Card.Section py="md" inheritPadding>
         <Group style={{ float: "right" }}>
           <ClassBadge id={class_id} name={className} />
+          {grade && <GradeBadge grade={grade} />}
         </Group>
         <Text>{content}</Text>
       </Card.Section>
