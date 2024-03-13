@@ -50,6 +50,7 @@ export type Database = {
           class_id: number | null;
           content: string | null;
           created_at: string;
+          grade: number | null;
           grade_id: number | null;
           id: number;
           published: boolean;
@@ -61,6 +62,7 @@ export type Database = {
           class_id?: number | null;
           content?: string | null;
           created_at?: string;
+          grade?: number | null;
           grade_id?: number | null;
           id?: number;
           published: boolean;
@@ -72,6 +74,7 @@ export type Database = {
           class_id?: number | null;
           content?: string | null;
           created_at?: string;
+          grade?: number | null;
           grade_id?: number | null;
           id?: number;
           published?: boolean;

@@ -17,8 +17,10 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import {
   IconBrightness,
+  IconSchool,
   IconSearch,
   IconTrendingUp,
+  IconUsers,
 } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,9 +42,14 @@ const links = [
     icon: <IconSearch size="1rem" />,
   },
   {
-    href: "/test",
-    label: "テストページ",
-    icon: <IconSearch size="1rem" />,
+    href: "/classes",
+    label: "授業",
+    icon: <IconSchool size="1rem" />,
+  },
+  {
+    href: "/users",
+    label: "ユーザー",
+    icon: <IconUsers size="1rem" />,
   },
 ];
 
@@ -57,7 +64,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <AppShell
       header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{ width: 240, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
     >
       <AppShell.Header>

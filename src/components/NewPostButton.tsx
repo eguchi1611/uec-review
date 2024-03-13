@@ -1,5 +1,4 @@
 import { useClassesSet } from "@/hooks/useClassesSet";
-import { useGradesSet } from "@/hooks/useGradesSet";
 import useReviewHandler from "@/hooks/useReviewHandler";
 import { useSessionUser } from "@/hooks/useSessionUser";
 import {
@@ -20,6 +19,14 @@ import { IconPlus } from "@tabler/icons-react";
 import { useMemo } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
+const Grades: Record<string, number> = {
+  秀: 4,
+  優: 3,
+  良: 2,
+  可: 1,
+  不可: 0,
+};
+
 type Inputs = {
   grade: string;
   teacher: string;
@@ -31,16 +38,10 @@ export default function NewPostButton() {
   const [opened, { open, close }] = useDisclosure(false);
 
   const { classes } = useClassesSet();
-  const { grades } = useGradesSet();
 
   const classSet = useMemo(
     () => Object.fromEntries(classes.map((p) => [p.name, p.id])),
     [classes],
-  );
-
-  const gradesSet = useMemo(
-    () => Object.fromEntries(grades.map((p) => [p.name, p.id])),
-    [grades],
   );
 
   const {
@@ -90,7 +91,7 @@ export default function NewPostButton() {
     try {
       await postReview({
         class_id: classSet[data.class_id] ?? null,
-        grade_id: gradesSet[data.grade] ?? null,
+        grade: Grades[data.grade] ?? null,
         content: data.content ?? null,
         teacher: data.teacher ?? null,
         user_id: user?.id,
@@ -157,7 +158,7 @@ export default function NewPostButton() {
                   placeholder="入力"
                   description="(任意)"
                   clearable
-                  data={[...Object.keys(gradesSet)]}
+                  data={[...Object.keys(Grades)]}
                   {...field}
                 />
               )}

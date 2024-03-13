@@ -1,10 +1,10 @@
 import Layout from "@/components/Layout";
-import Test from "./Test";
+import Reviews from "./_components/Reviews";
 
 export default function IndexPage() {
   return (
     <Layout>
-      <Test />
+      <Reviews />
     </Layout>
   );
 }
