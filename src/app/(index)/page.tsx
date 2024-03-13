@@ -1,10 +1,5 @@
 import Layout from "@/components/Layout";
-import Reviews from "./_components/Reviews";
 
 export default function IndexPage() {
-  return (
-    <Layout>
-      <Reviews />
-    </Layout>
-  );
+  return <Layout>概要</Layout>;
 }

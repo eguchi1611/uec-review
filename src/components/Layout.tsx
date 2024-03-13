@@ -17,6 +17,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import {
   IconBrightness,
+  IconHome,
   IconSchool,
   IconSearch,
   IconTrendingUp,
@@ -33,6 +34,11 @@ import SignInCard from "./SignInCard";
 const links = [
   {
     href: "/",
+    label: "概要",
+    icon: <IconHome size="1rem" />,
+  },
+  {
+    href: "/reviews",
     label: "おすすめレビュー",
     icon: <IconTrendingUp size="1rem" />,
   },
@@ -95,7 +101,7 @@ export default function Layout({ children }: PropsWithChildren) {
               component={Link}
               leftSection={icon}
               active={
-                pathname !== "/" ? href.startsWith(pathname) : href === "/"
+                href !== "/" ? pathname.startsWith(href) : pathname === "/"
               }
             />
           ))}
