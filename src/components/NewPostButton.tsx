@@ -99,6 +99,7 @@ export default function NewPostButton() {
       close();
       notifications.show({
         message: "投稿しました",
+        color: "green",
       });
       reset();
     } catch (error) {

@@ -6,5 +6,9 @@ export default function useReviewHandler() {
     await supabase.from("reviews").insert({ ...props, published: true });
   };
 
-  return { postReview };
+  const deletePost = async (id: number) => {
+    await supabase.from("reviews").delete().eq("id", id);
+  };
+
+  return { postReview, deletePost };
 }

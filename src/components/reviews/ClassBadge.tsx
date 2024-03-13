@@ -2,7 +2,7 @@ import { Button } from "@mantine/core";
 import Link from "next/link";
 
 type Props = {
-  id?: number;
+  id?: number | null;
   name?: string;
 };
 

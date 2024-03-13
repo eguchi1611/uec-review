@@ -9,16 +9,7 @@ export default function Reviews() {
   return (
     <SimpleGrid cols={{ xs: 1, md: 2, lg: 3 }}>
       {reviews.map((review) => (
-        <ReviewCard
-          key={review.id}
-          id={review.id}
-          content={review.content ?? undefined}
-          userAvatar={review.users?.avatar_url ?? undefined}
-          clazzName={review.classes?.name}
-          userName={review.users?.name ?? undefined}
-          classId={review.classes?.id ?? undefined}
-          userId={review.users?.id ?? undefined}
-        />
+        <ReviewCard key={review.id} review={review} />
       ))}
     </SimpleGrid>
   );

@@ -3,8 +3,8 @@ import Link from "next/link";
 
 type Props = {
   id?: string;
-  name?: string;
-  avatar?: string;
+  name?: string | null;
+  avatar?: string | null;
 };
 
 export function UserCard({ id, name, avatar }: Props) {
@@ -19,6 +19,7 @@ export function UserCard({ id, name, avatar }: Props) {
           textDecoration: "none",
           position: "absolute",
           inset: 0,
+          zIndex: 10,
         }}
       />
     </Group>
