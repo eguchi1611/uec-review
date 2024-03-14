@@ -1,3 +1,9 @@
+import { Button } from "@mui/material";
+
 export default function IndexPage() {
-  return "Index page";
+  return (
+    <>
+      <Button variant="contained">hello</Button>
+    </>
+  );
 }
