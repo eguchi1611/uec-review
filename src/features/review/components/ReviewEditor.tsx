@@ -45,6 +45,7 @@ export function ReviewEditor() {
         <FormControl fullWidth required>
           <InputLabel id="grade-input">成績</InputLabel>
           <Select labelId="grade-input" label="成績">
+            <MenuItem value={-1}>非公開</MenuItem>
             <MenuItem value={4}>秀</MenuItem>
             <MenuItem value={3}>優</MenuItem>
             <MenuItem value={2}>良</MenuItem>
