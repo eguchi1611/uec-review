@@ -1,6 +1,6 @@
 "use client";
 
-import { createTheme } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material";
 import { Noto_Sans_JP } from "next/font/google";
 
 const noto_sans_jp = Noto_Sans_JP({ subsets: ["latin"] });
@@ -32,4 +32,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default responsiveFontSizes(theme);

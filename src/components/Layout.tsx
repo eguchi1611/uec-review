@@ -17,7 +17,7 @@ export function Layout({ children }: PropsWithChildren) {
   const entries: LinkEntry[] = [
     { label: "ホーム", icon: <IconHome />, href: "/" },
     { label: "探す", icon: <IconSearch />, href: "/search" },
-    { label: "プロフィール", icon: <IconPerson />, href: "/users" },
+    { label: "プロフィール", icon: <IconPerson />, href: "/users/pro_uecer" },
   ].map((entry) => ({
     ...entry,
     active:
