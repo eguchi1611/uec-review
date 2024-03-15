@@ -27,6 +27,7 @@ export function MobileNavigation({ entries }: Props) {
             component={Link}
             href={entry.href}
             value={entry.active}
+            scroll={false}
           />
         ))}
       </BottomNavigation>
