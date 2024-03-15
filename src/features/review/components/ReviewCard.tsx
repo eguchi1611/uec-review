@@ -40,22 +40,19 @@ export function ReviewCard() {
           sodales.
         </Typography>
         <Box display="flex" alignItems="center" gap={1}>
-          <Button color="primary" size="small" startIcon={<IconStar />}>
+          <Button color="primary" startIcon={<IconStar />}>
             32
           </Button>
           <Button
             color="inherit"
-            size="small"
             startIcon={<IconBookmarkBorder />}
             sx={{ mr: "auto" }}
           >
             10
           </Button>
-          <Button
-            color="inherit"
-            size="small"
-            startIcon={<IconShare />}
-          ></Button>
+          <Button color="inherit" startIcon={<IconShare />}>
+            共有
+          </Button>
         </Box>
       </Stack>
     </Paper>
