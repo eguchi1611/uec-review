@@ -2,6 +2,7 @@ import theme from "@/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { PropsWithChildren } from "react";
+import { Providers } from "./_components/Providers";
 import "./globals.css";
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -11,7 +12,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline enableColorScheme />
-            {children}
+            <Providers>{children}</Providers>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
