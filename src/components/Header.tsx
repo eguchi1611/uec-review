@@ -1,16 +1,14 @@
 import { SignInDialog } from "@/features/auth/components/SignInDialog";
-import { useSignOut } from "@/features/auth/hooks/useSignOut";
 import { useUser } from "@/features/auth/hooks/useUser";
 import IconLogin from "@mui/icons-material/Login";
-import IconLogout from "@mui/icons-material/Logout";
 import { AppBar, Button, Container, Toolbar } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
+import { HeaderMenu } from "./HeaderMenu";
 
 export function Header() {
   const [openSignInDialog, setOpenSignInDialog] = useState(false);
   const { user, loading } = useUser();
-  const { signOut } = useSignOut();
 
   return (
     <AppBar position="fixed" sx={{ bgcolor: "inherit" }}>
@@ -35,11 +33,7 @@ export function Header() {
               サインイン
             </Button>
           )}
-          {!!user && !loading && (
-            <Button startIcon={<IconLogout />} onClick={() => signOut()}>
-              サインアウト
-            </Button>
-          )}
+          {!!user && !loading && <HeaderMenu />}
           <SignInDialog
             onClose={() => setOpenSignInDialog(false)}
             open={openSignInDialog}
