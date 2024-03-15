@@ -27,7 +27,15 @@ export function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <Container sx={{ display: "flex", pt: 10, gap: 3, overflow: "none" }}>
+      <Container
+        sx={{
+          display: "flex",
+          pt: 10,
+          gap: 3,
+          overflow: "none",
+          pb: { xs: 12, md: 0 },
+        }}
+      >
         <Box sx={{ display: { xs: "none", md: "block" } }}>
           <Sidebar entries={entries} />
         </Box>
