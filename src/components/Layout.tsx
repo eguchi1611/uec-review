@@ -9,6 +9,7 @@ import { PropsWithChildren, ReactNode } from "react";
 import { Header } from "./Header";
 import { MobileNavigation } from "./MobileNavigation";
 import { Sidebar } from "./Sidebar";
+import { ActionButton } from "./ActionButton";
 
 export function Layout({ children }: PropsWithChildren) {
   const pathname = usePathname();
@@ -33,6 +34,16 @@ export function Layout({ children }: PropsWithChildren) {
         <Box sx={{ flex: 1 }}>{children}</Box>
       </Container>
       <MobileNavigation entries={entries} />
+      <Box
+        sx={{
+          display: { md: "none" },
+          position: "fixed",
+          right: 16,
+          bottom: 80,
+        }}
+      >
+        <ActionButton />
+      </Box>
     </>
   );
 }
