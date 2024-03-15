@@ -19,11 +19,10 @@ export function MobileNavigation({ entries }: Props) {
         borderColor: "divider",
       }}
     >
-      <BottomNavigation showLabels value={true}>
+      <BottomNavigation value={true}>
         {entries.map((entry) => (
           <BottomNavigationAction
             key={entry.label}
-            label={entry.label}
             icon={entry.icon}
             component={Link}
             href={entry.href}
