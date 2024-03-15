@@ -10,6 +10,7 @@ import { Header } from "./Header";
 import { MobileNavigation } from "./MobileNavigation";
 import { Sidebar } from "./Sidebar";
 import { ActionButton } from "./ActionButton";
+import { ProfileListener } from "@/features/profile/components/ProfileListener";
 
 export function Layout({ children }: PropsWithChildren) {
   const pathname = usePathname();
@@ -52,6 +53,7 @@ export function Layout({ children }: PropsWithChildren) {
       >
         <ActionButton />
       </Box>
+      <ProfileListener />
     </>
   );
 }

@@ -7,10 +7,16 @@ export function useUser() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setLoading(false);
       setUser(session?.user || null);
     });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return { user, loading };
