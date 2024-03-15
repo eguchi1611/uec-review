@@ -1,3 +1,4 @@
+import { ReviewCard } from "@/features/review/components/ReviewCard";
 import { Avatar, Box, Stack } from "@mui/material";
 
 export function ProfileCard() {
@@ -7,7 +8,10 @@ export function ProfileCard() {
         <Avatar sx={{ width: 64, height: 64 }} />
         <Box typography="h5">名前</Box>
       </Box>
-      <Stack spacing={2} mt={2}></Stack>
+      <Stack spacing={2} mt={2}>
+        <ReviewCard />
+        <ReviewCard />
+      </Stack>
     </Box>
   );
 }
