@@ -30,7 +30,7 @@ export function ReviewEditor() {
       <Grid item xs={12} md={4}>
         <FormControl fullWidth required>
           <InputLabel id="year-input">受講学年</InputLabel>
-          <Select labelId="year-input" label="受講学年">
+          <Select labelId="year-input" label="受講学年" defaultValue="">
             <MenuItem value="1">1年</MenuItem>
             <MenuItem value="2">2年</MenuItem>
             <MenuItem value="3">3年</MenuItem>
@@ -44,7 +44,7 @@ export function ReviewEditor() {
       <Grid item xs={12} md={4}>
         <FormControl fullWidth required>
           <InputLabel id="grade-input">成績</InputLabel>
-          <Select labelId="grade-input" label="成績">
+          <Select labelId="grade-input" label="成績" defaultValue="">
             <MenuItem value={-1}>非公開</MenuItem>
             <MenuItem value={4}>秀</MenuItem>
             <MenuItem value={3}>優</MenuItem>

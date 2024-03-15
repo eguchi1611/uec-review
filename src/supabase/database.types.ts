@@ -41,6 +41,54 @@ export type Database = {
           },
         ];
       };
+      reviews: {
+        Row: {
+          class_id: number;
+          created_at: string;
+          id: number;
+          message: string;
+          result: number | null;
+          teacher_name: string | null;
+          user_id: string;
+          year: number;
+        };
+        Insert: {
+          class_id: number;
+          created_at?: string;
+          id?: number;
+          message: string;
+          result?: number | null;
+          teacher_name?: string | null;
+          user_id?: string;
+          year: number;
+        };
+        Update: {
+          class_id?: number;
+          created_at?: string;
+          id?: number;
+          message?: string;
+          result?: number | null;
+          teacher_name?: string | null;
+          user_id?: string;
+          year?: number;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "public_reviews_class_id_fkey";
+            columns: ["class_id"];
+            isOneToOne: false;
+            referencedRelation: "classes";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "public_reviews_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "users";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       users: {
         Row: {
           avatar_url: string;
