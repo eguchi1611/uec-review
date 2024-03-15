@@ -4,7 +4,7 @@ import IconLogin from "@mui/icons-material/Login";
 
 export function Header() {
   return (
-    <AppBar position="fixed" sx={{ bgcolor: "white" }}>
+    <AppBar position="fixed" sx={{ bgcolor: "inherit" }}>
       <Container>
         <Toolbar disableGutters>
           <Image
