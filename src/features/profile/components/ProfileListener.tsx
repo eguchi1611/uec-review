@@ -1,5 +1,6 @@
 import { supabase } from "@/supabase/client";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { updateProfile } from "../updateProfile";
 
 export function ProfileListener() {
@@ -13,6 +14,9 @@ export function ProfileListener() {
         id: user.id,
         name: user.user_metadata.name,
         avatar_url: user.user_metadata.avatar_url,
+      }).catch((error) => {
+        console.error(error);
+        toast.error("プロフィールの更新に失敗しました");
       });
     });
 

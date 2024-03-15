@@ -11,7 +11,7 @@ export function ReviewEditorDialog({ open, onClose }: Props) {
     <Dialog open={open} onClose={onClose} maxWidth="sm" scroll="body">
       <DialogTitle>レビューを投稿</DialogTitle>
       <DialogContent>
-        <ReviewEditor />
+        <ReviewEditor onExit={onClose} />
       </DialogContent>
     </Dialog>
   );
