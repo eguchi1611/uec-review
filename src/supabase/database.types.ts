@@ -95,21 +95,18 @@ export type Database = {
           created_at: string;
           id: string;
           name: string;
-          user_name: string;
         };
         Insert: {
           avatar_url: string;
           created_at?: string;
           id?: string;
           name: string;
-          user_name: string;
         };
         Update: {
           avatar_url?: string;
           created_at?: string;
           id?: string;
           name?: string;
-          user_name?: string;
         };
         Relationships: [
           {

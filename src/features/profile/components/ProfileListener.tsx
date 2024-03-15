@@ -9,10 +9,8 @@ export function ProfileListener() {
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (!session || event !== "INITIAL_SESSION") return;
       const { user } = session;
-
       updateProfile({
         id: user.id,
-        user_name: user.user_metadata.user_name,
         name: user.user_metadata.name,
         avatar_url: user.user_metadata.avatar_url,
       });
