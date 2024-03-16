@@ -14,6 +14,11 @@ import {
 } from "@mui/material";
 import { Review } from "../types";
 import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
+import dynamic from "next/dynamic";
+
+const ReviewCreatedAtLabel = dynamic(() => import("./ReviewCreatedAtLabel"), {
+  ssr: false,
+});
 
 type Props = {
   review: Review;
@@ -40,20 +45,17 @@ export function ReviewCard({ review }: Props) {
           <Chip label="優" color="success" variant="outlined" />
         </Box>
         <Typography>{review.message}</Typography>
-        <Box display="flex" alignItems="center" gap={1}>
+        <Box display="flex" alignItems="end" gap={1}>
           <Button color="primary" startIcon={<IconStar />}>
             32
           </Button>
-          <Button
-            color="inherit"
-            startIcon={<IconBookmarkBorder />}
-            sx={{ mr: "auto" }}
-          >
+          <Button color="inherit" startIcon={<IconBookmarkBorder />}>
             10
           </Button>
-          <Button color="inherit" startIcon={<IconShare />}>
+          <Button color="inherit" startIcon={<IconShare />} sx={{ mr: "auto" }}>
             共有
           </Button>
+          <ReviewCreatedAtLabel createdAt={review.created_at} />
         </Box>
       </Stack>
     </Paper>
