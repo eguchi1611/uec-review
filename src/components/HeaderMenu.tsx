@@ -1,7 +1,8 @@
 import { signOut } from "@/features/auth/signOut";
+import { useProfile } from "@/features/profile/hooks/useProfile";
 import IconLogout from "@mui/icons-material/Logout";
-import IconMoreVert from "@mui/icons-material/MoreVert";
 import {
+  Avatar,
   IconButton,
   ListItemIcon,
   ListItemText,
@@ -19,11 +20,15 @@ export function HeaderMenu() {
     setAnchorEl(null);
   };
 
+  const { profile } = useProfile();
+
   return (
     <>
-      <IconButton size="large" onClick={handleClick}>
-        <IconMoreVert />
-      </IconButton>
+      {profile?.avatar_url && (
+        <IconButton size="large" onClick={handleClick}>
+          <Avatar sx={{ width: 32, height: 32 }} src={profile?.avatar_url} />
+        </IconButton>
+      )}
       <Menu
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
