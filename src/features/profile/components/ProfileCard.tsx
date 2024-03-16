@@ -1,7 +1,7 @@
 import { ReviewCard } from "@/features/review/components/ReviewCard";
-import { Review } from "@/features/review/queries/ReviewQuery";
+import { Review } from "@/features/review/types";
 import { Avatar, Box, Stack } from "@mui/material";
-import { Profile } from "../queries/ProfileQuery";
+import { Profile } from "../types";
 
 type Props = {
   reviews: Review[];

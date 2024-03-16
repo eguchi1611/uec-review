@@ -12,8 +12,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { Review } from "../types";
 import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
-import { Review } from "../queries/ReviewQuery";
 
 type Props = {
   review: Review;
