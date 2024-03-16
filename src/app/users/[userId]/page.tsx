@@ -18,8 +18,6 @@ export default async function UserPage({ params: { userId } }: Props) {
 
   if (profile === null) notFound();
 
-  console.log(reviews.map((r) => r.message));
-
   return (
     <Layout>
       <ProfileCard profile={profile} reviews={reviews} />

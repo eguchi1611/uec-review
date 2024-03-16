@@ -1,4 +1,4 @@
-import { ReviewCard } from "@/features/review/components/ReviewCard";
+import { ReviewCardStack } from "@/features/review/components/ReviewCardStack";
 import { Review } from "@/features/review/types";
 import { Avatar, Box, Stack } from "@mui/material";
 import { Profile } from "../types";
@@ -16,13 +16,7 @@ export function ProfileCard({ reviews, profile }: Props) {
         <Box typography="h5">{profile.name}</Box>
       </Box>
       <Stack spacing={2} mt={2}>
-        {reviews
-          .sort((a, b) =>
-            Number(a.created_at) - Number(b.created_at) < 0 ? 1 : -1,
-          )
-          .map((review) => (
-            <ReviewCard key={review.id} review={review} />
-          ))}
+        <ReviewCardStack reviews={reviews} />
       </Stack>
     </Box>
   );
