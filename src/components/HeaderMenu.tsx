@@ -24,7 +24,13 @@ export function HeaderMenu() {
       <IconButton size="large" onClick={handleClick}>
         <IconMoreVert />
       </IconButton>
-      <Menu open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={handleClose}>
+      <Menu
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
         <MenuItem>
           <ListItemIcon>
             <IconLogout />

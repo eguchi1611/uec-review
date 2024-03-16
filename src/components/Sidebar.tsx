@@ -11,17 +11,18 @@ import { PostButton } from "./PostButton";
 
 type Props = {
   entries: LinkEntry[];
+  disablePostButton?: boolean;
 };
 
-export function Sidebar({ entries }: Props) {
+export function Sidebar({ entries, disablePostButton }: Props) {
   return (
     <Stack spacing={2}>
-      <List sx={{ width: "100%", maxWidth: 360 }} disablePadding>
+      <List sx={{ width: 200 }} disablePadding>
         {entries.map((entry) => (
           <ListItemButton
-            key={entry.label}
+            key={entry.label + entry.href}
             component={Link}
-            href={entry.href}
+            href={entry.href || "/"}
             selected={entry.active}
           >
             <ListItemIcon>{entry.icon}</ListItemIcon>
@@ -29,7 +30,7 @@ export function Sidebar({ entries }: Props) {
           </ListItemButton>
         ))}
       </List>
-      <PostButton />
+      {!disablePostButton && <PostButton />}
     </Stack>
   );
 }

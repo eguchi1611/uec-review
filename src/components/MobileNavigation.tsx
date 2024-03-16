@@ -25,7 +25,7 @@ export function MobileNavigation({ entries }: Props) {
             key={entry.label}
             icon={entry.icon}
             component={Link}
-            href={entry.href}
+            href={entry.href || ""}
             value={entry.active}
             scroll={false}
           />

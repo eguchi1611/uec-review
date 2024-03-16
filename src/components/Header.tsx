@@ -33,7 +33,7 @@ export function Header() {
               サインイン
             </Button>
           )}
-          {!!user && !loading && <HeaderMenu />}
+          {(!!user || loading) && <HeaderMenu />}
           <SignInDialog
             onClose={() => setOpenSignInDialog(false)}
             open={openSignInDialog}
