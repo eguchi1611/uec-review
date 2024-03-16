@@ -60,14 +60,10 @@ export function Layout({ children }: PropsWithChildren) {
           pb: { xs: 12, md: 0 },
         }}
       >
-        <Box
-          sx={{
-            display: { xs: "none", md: "block" },
-            position: "sticky",
-            top: 0,
-          }}
-        >
-          <Sidebar entries={entries} disablePostButton={!loading && !user} />
+        <Box sx={{ display: { xs: "none", md: "block" } }}>
+          <Box sx={{ position: "sticky", top: 80 }}>
+            <Sidebar entries={entries} disablePostButton={!loading && !user} />
+          </Box>
         </Box>
         <Box sx={{ flex: 1 }}>{children}</Box>
       </Container>
