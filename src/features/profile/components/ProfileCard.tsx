@@ -1,17 +1,19 @@
 import { ReviewCard } from "@/features/review/components/ReviewCard";
 import { Review } from "@/features/review/queries/ReviewQuery";
 import { Avatar, Box, Stack } from "@mui/material";
+import { Profile } from "../queries/ProfileQuery";
 
 type Props = {
   reviews: Review[];
+  profile: Profile;
 };
 
-export function ProfileCard({ reviews }: Props) {
+export function ProfileCard({ reviews, profile }: Props) {
   return (
     <Box>
       <Box display="flex" gap={2} alignItems="center">
-        <Avatar sx={{ width: 64, height: 64 }} />
-        <Box typography="h5">名前</Box>
+        <Avatar sx={{ width: 64, height: 64 }} src={profile.avatar_url} />
+        <Box typography="h5">{profile.name}</Box>
       </Box>
       <Stack spacing={2} mt={2}>
         {reviews
