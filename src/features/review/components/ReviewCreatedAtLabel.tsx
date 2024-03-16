@@ -39,7 +39,6 @@ function getCreatedAtLabel(now: number, date: number): string {
   const diffHours = differenceInHours(now, date);
   const diffDays = differenceInDays(now, date);
 
-  console.log(now - date);
   if (now - date <= 60 * 1000) {
     // 1分以内
     return `${diffSeconds}秒前`;
