@@ -13,6 +13,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { amber, blue, grey, red } from "@mui/material/colors";
 import dynamic from "next/dynamic";
 import { Review } from "../types";
 import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
@@ -20,6 +21,14 @@ import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
 const ReviewCreatedAtLabel = dynamic(() => import("./ReviewCreatedAtLabel"), {
   ssr: false,
 });
+
+const RESULT_PROPS = [
+  { label: "不可", color: grey[500] },
+  { label: "可", color: grey[700] },
+  { label: "良", color: amber[500] },
+  { label: "優", color: blue[500] },
+  { label: "秀", color: red[500] },
+];
 
 type Props = {
   review: Review;
@@ -44,7 +53,16 @@ export function ReviewCard({ review }: Props) {
           <Button startIcon={<IconImportContacts />} sx={{ mr: "auto" }}>
             {review.classes?.name}
           </Button>
-          <Chip label="優" color="success" variant="outlined" />
+          {typeof review?.result === "number" && (
+            <Chip
+              label={RESULT_PROPS[review.result].label}
+              variant="outlined"
+              sx={{
+                color: RESULT_PROPS[review.result].color,
+                borderColor: RESULT_PROPS[review.result].color,
+              }}
+            />
+          )}
         </Box>
         <Typography>{review.message}</Typography>
         <Box display="flex" alignItems="end" gap={1}>
