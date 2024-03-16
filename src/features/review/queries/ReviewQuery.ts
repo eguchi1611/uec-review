@@ -3,6 +3,7 @@ import { QueryData } from "@supabase/supabase-js";
 
 export const reviewQuery = supabase
   .from("reviews")
-  .select("*, classes (name), users (name, avatar_url)");
+  .select("*, classes (name), users (name, avatar_url)")
+  .limit(100);
 
 export type Review = QueryData<typeof reviewQuery>[number];
