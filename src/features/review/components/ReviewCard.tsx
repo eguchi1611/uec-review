@@ -1,22 +1,14 @@
 import { StretchedLink } from "@/components/common/StretchedLink";
 import IconBookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import IconImportContacts from "@mui/icons-material/ImportContacts";
-import IconMoreHoriz from "@mui/icons-material/MoreHoriz";
 import IconShare from "@mui/icons-material/Share";
 import IconStar from "@mui/icons-material/Star";
-import {
-  Box,
-  Button,
-  Chip,
-  IconButton,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import { amber, blue, grey, red } from "@mui/material/colors";
 import dynamic from "next/dynamic";
 import { Review } from "../types";
 import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
+import { ReviewCardMenu } from "./ReviewCardMenu";
 
 const ReviewCreatedAtLabel = dynamic(() => import("./ReviewCreatedAtLabel"), {
   ssr: false,
@@ -45,9 +37,7 @@ export function ReviewCard({ review }: Props) {
             name={review.users?.name || "No name"}
             avatarUrl={review.users?.avatar_url}
           />
-          <IconButton sx={{ ml: "auto" }}>
-            <IconMoreHoriz />
-          </IconButton>
+          <ReviewCardMenu reviewId={review.id} />
         </Box>
         <Box display="flex" alignItems="start">
           <Button startIcon={<IconImportContacts />} sx={{ mr: "auto" }}>
