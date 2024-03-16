@@ -20,7 +20,7 @@ export function NameLabelWithAvatar({ href, name, avatarUrl }: Props) {
       <Box>
         <Box lineHeight={1}>{name}</Box>
         <Box typography="body2" color="text.secondary">
-          @ pro_uecer
+          {/* @ id */}
         </Box>
       </Box>
       <StretchedLink href={href} />
