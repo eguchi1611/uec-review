@@ -1,10 +1,10 @@
 import { Layout } from "@/components/Layout";
-import { ProfileCard } from "@/features/profile/components/ProfileCard";
 import { getProfile } from "@/features/profile/getProfile";
 import { Profile } from "@/features/profile/types";
-import { getReviewsByUserId } from "@/features/review/getReviewsByUserId";
-import { Review } from "@/features/review/types";
+import { Avatar, Box, Stack } from "@mui/material";
 import { notFound } from "next/navigation";
+import { ReviewCardStackWrapper } from "./_components/ReviewCardStackWrapper";
+import { validate } from "uuid";
 
 type Props = {
   params: {
@@ -13,14 +13,20 @@ type Props = {
 };
 
 export default async function UserPage({ params: { userId } }: Props) {
-  const reviews: Review[] = (await getReviewsByUserId(userId)).reviews;
+  if (!validate(userId)) notFound();
   const profile: Profile | null = (await getProfile(userId)).profile;
 
   if (profile === null) notFound();
 
   return (
     <Layout>
-      <ProfileCard profile={profile} reviews={reviews} />
+      <Stack spacing={2}>
+        <Box display="flex" gap={2} alignItems="center">
+          <Avatar sx={{ width: 64, height: 64 }} src={profile.avatar_url} />
+          <Box typography="h5">{profile.name}</Box>
+        </Box>
+        <ReviewCardStackWrapper userId={profile.id} />
+      </Stack>
     </Layout>
   );
 }
