@@ -68,7 +68,7 @@ export function Layout({ children }: PropsWithChildren) {
         <Box sx={{ flex: 1 }}>{children}</Box>
       </Container>
       <MobileNavigation entries={entries} />
-      {!loading && !user && (
+      {(loading || user) && (
         <Box
           sx={{
             display: { md: "none" },

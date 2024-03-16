@@ -16,14 +16,12 @@ export default async function UserPage({ params: { userId } }: Props) {
   let reviews: Review[] = [];
   let profile: Profile | null = null;
 
-  reviews = (await getReviewsByUserId(userId)).reviews.sort((a, b) =>
-    new Date(a.created_at).getTime() - new Date(b.created_at).getTime() < 0
-      ? -1
-      : 0,
-  );
+  reviews = (await getReviewsByUserId(userId)).reviews;
   profile = (await getProfile(userId)).profile;
 
   if (profile === null) notFound();
+
+  console.log(reviews.map((r) => r.message));
 
   return (
     <Layout>
