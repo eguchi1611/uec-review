@@ -25,7 +25,7 @@ export default async function UserPage({ params: { userId } }: Props) {
           <Avatar sx={{ width: 64, height: 64 }} src={profile.avatar_url} />
           <Box typography="h5">{profile.name}</Box>
         </Box>
-        <ReviewCardStackWrapper userId={profile.id} />
+        <ReviewCardStackWrapper userId={userId} />
       </Stack>
     </Layout>
   );

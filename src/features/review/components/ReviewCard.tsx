@@ -1,3 +1,4 @@
+import { StretchedLink } from "@/components/common/StretchedLink";
 import IconBookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import IconImportContacts from "@mui/icons-material/ImportContacts";
 import IconMoreHoriz from "@mui/icons-material/MoreHoriz";
@@ -12,9 +13,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import dynamic from "next/dynamic";
 import { Review } from "../types";
 import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
-import dynamic from "next/dynamic";
 
 const ReviewCreatedAtLabel = dynamic(() => import("./ReviewCreatedAtLabel"), {
   ssr: false,
@@ -26,7 +27,8 @@ type Props = {
 
 export function ReviewCard({ review }: Props) {
   return (
-    <Paper sx={{ p: 2 }}>
+    <Paper sx={{ p: 2, position: "relative" }}>
+      <StretchedLink href={`/reviews/${review.id}`} />
       <Stack spacing={1}>
         <Box display="flex" alignItems="start">
           <NameLabelWithAvatar

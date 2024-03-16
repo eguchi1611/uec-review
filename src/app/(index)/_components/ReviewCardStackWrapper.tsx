@@ -16,9 +16,5 @@ export function ReviewCardStackWrapper() {
     }
   }, [error]);
 
-  return (
-    <>
-      <ReviewCardStack reviews={data?.reviews ?? []} />
-    </>
-  );
+  return <ReviewCardStack reviews={data?.reviews ?? []} />;
 }
