@@ -12,6 +12,7 @@ export function StretchedLink({ href }: Props) {
         position: "absolute",
         inset: 0,
       }}
+      scroll={false}
     />
   );
 }
