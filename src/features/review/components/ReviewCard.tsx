@@ -1,4 +1,7 @@
+"use client";
+
 import { StretchedLink } from "@/components/common/StretchedLink";
+import { useUser } from "@/features/auth/hooks/useUser";
 import IconBookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import IconImportContacts from "@mui/icons-material/ImportContacts";
 import IconShare from "@mui/icons-material/Share";
@@ -27,6 +30,7 @@ type Props = {
 };
 
 export function ReviewCard({ review }: Props) {
+  const { user } = useUser();
   return (
     <Paper sx={{ p: 2, position: "relative" }}>
       <StretchedLink href={`/reviews/${review.id}`} />
@@ -37,7 +41,7 @@ export function ReviewCard({ review }: Props) {
             name={review.users?.name || "No name"}
             avatarUrl={review.users?.avatar_url}
           />
-          <ReviewCardMenu reviewId={review.id} />
+          {review.user_id === user?.id && <ReviewCardMenu review={review} />}
         </Box>
         <Box display="flex" alignItems="start">
           <Button startIcon={<IconImportContacts />} sx={{ mr: "auto" }}>

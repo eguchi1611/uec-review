@@ -14,18 +14,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import { postReview } from "../postReview";
-import { mutateReviews } from "../utils/mutateReviews";
+import { Review } from "../types";
 
 type Props = {
-  onExit?: () => void;
+  defaultValues?: Review;
+  onSubmit: (inputs: Inputs) => Promise<boolean>;
 };
 
-type Inputs = {
+export type Inputs = {
   classId: string | null;
   year: string;
   teacherName: string;
@@ -33,7 +31,10 @@ type Inputs = {
   message: string;
 };
 
-export function ReviewEditor({ onExit }: Props) {
+export function ReviewEditor({
+  defaultValues,
+  onSubmit: submitHandler,
+}: Props) {
   const { classes } = useClasses();
 
   const classData = useMemo(
@@ -44,37 +45,28 @@ export function ReviewEditor({ onExit }: Props) {
   const classOptions = useMemo(() => Object.keys(classData), [classData]);
 
   const { control, handleSubmit, reset } = useForm<Inputs>({
-    defaultValues: {
-      classId: null,
-      year: "",
-      teacherName: "",
-      message: "",
-      result: "",
-    },
+    defaultValues: defaultValues
+      ? {
+          classId: String(defaultValues.class_id),
+          year: String(defaultValues.year),
+          teacherName: defaultValues.teacher_name || "",
+          message: defaultValues.message,
+          result:
+            defaultValues.result != null ? String(defaultValues.result) : "-1",
+        }
+      : {
+          classId: null,
+          year: "",
+          teacherName: "",
+          message: "",
+          result: "",
+        },
   });
 
-  const router = useRouter();
-
-  const onSubmit = handleSubmit(async (data) => {
-    const postData = {
-      class_id: Number(data.classId),
-      year: Number(data.year),
-      teacher_name: data.teacherName || null,
-      result: Number(data.result) >= 0 ? Number(data.result) : null,
-      message: data.message,
-    };
-    try {
-      await postReview(postData);
-      toast.success("投稿しました");
+  const onSubmit = handleSubmit((data) => {
+    submitHandler(data).then(() => {
       reset();
-      if (onExit) onExit();
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-      toast.error("投稿に失敗しました");
-    } finally {
-      mutateReviews();
-    }
+    });
   });
 
   return (
@@ -99,7 +91,7 @@ export function ReviewEditor({ onExit }: Props) {
                   helperText={error?.message}
                 />
               )}
-              getOptionLabel={(option) => classData[option]}
+              getOptionLabel={(option) => classData[option] ?? ""}
               onChange={(_e, value) => onChange(value)}
               {...rest}
             />
@@ -184,7 +176,7 @@ export function ReviewEditor({ onExit }: Props) {
       </Grid>
       <Grid item xs={12}>
         <Stack direction="row" spacing={2} justifyContent="end">
-          <Button type="submit">投稿</Button>
+          <Button type="submit">{defaultValues ? "更新" : "投稿"}</Button>
         </Stack>
       </Grid>
     </Grid>
