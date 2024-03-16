@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { mutate } from "swr";
 import { postReview } from "../postReview";
 
 type Props = {
@@ -71,6 +72,8 @@ export function ReviewEditor({ onExit }: Props) {
     } catch (error) {
       console.error(error);
       toast.error("投稿に失敗しました");
+    } finally {
+      mutate((key) => typeof key === "string" && key.startsWith("review"));
     }
   });
 

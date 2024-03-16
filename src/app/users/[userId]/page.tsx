@@ -13,11 +13,8 @@ type Props = {
 };
 
 export default async function UserPage({ params: { userId } }: Props) {
-  let reviews: Review[] = [];
-  let profile: Profile | null = null;
-
-  reviews = (await getReviewsByUserId(userId)).reviews;
-  profile = (await getProfile(userId)).profile;
+  const reviews: Review[] = (await getReviewsByUserId(userId)).reviews;
+  const profile: Profile | null = (await getProfile(userId)).profile;
 
   if (profile === null) notFound();
 
