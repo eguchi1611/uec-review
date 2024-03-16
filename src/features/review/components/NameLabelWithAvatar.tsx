@@ -3,9 +3,11 @@ import { Avatar, Box } from "@mui/material";
 
 type Props = {
   href: string;
+  name: string;
+  avatarUrl?: string;
 };
 
-export function NameLabelWithAvatar({ href }: Props) {
+export function NameLabelWithAvatar({ href, name, avatarUrl }: Props) {
   return (
     <Box
       display="flex"
@@ -14,9 +16,9 @@ export function NameLabelWithAvatar({ href }: Props) {
       position="relative"
       width="fit-content"
     >
-      <Avatar />
+      <Avatar src={avatarUrl} />
       <Box>
-        <Box lineHeight={1}>名前</Box>
+        <Box lineHeight={1}>{name}</Box>
         <Box typography="body2" color="text.secondary">
           @ pro_uecer
         </Box>

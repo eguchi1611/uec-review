@@ -1,7 +1,12 @@
 import { ReviewCard } from "@/features/review/components/ReviewCard";
+import { Review } from "@/features/review/queries/ReviewQuery";
 import { Avatar, Box, Stack } from "@mui/material";
 
-export function ProfileCard() {
+type Props = {
+  reviews: Review[];
+};
+
+export function ProfileCard({ reviews }: Props) {
   return (
     <Box>
       <Box display="flex" gap={2} alignItems="center">
@@ -9,24 +14,14 @@ export function ProfileCard() {
         <Box typography="h5">名前</Box>
       </Box>
       <Stack spacing={2} mt={2}>
-        <ReviewCard />
-        <ReviewCard />
+        {reviews
+          .sort((a, b) =>
+            Number(a.created_at) - Number(b.created_at) < 0 ? 1 : -1,
+          )
+          .map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
       </Stack>
     </Box>
   );
-}
-
-{
-  /* <Box
-        display="flex"
-        gap={2}
-        alignItems="start"
-        justifyContent="space-between"
-      >
-        <NameLabelWithAvatar href="/users/pro_uecer" />
-        <Button variant="outlined" startIcon={<IconShare />}>
-          共有
-        </Button>
-      </Box>
-      <Typography variant="h1">共有</Typography> */
 }

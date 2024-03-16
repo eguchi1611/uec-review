@@ -14,10 +14,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { postReview } from "../postReview";
 import { toast } from "react-toastify";
+import { postReview } from "../postReview";
 
 type Props = {
   onExit?: () => void;
@@ -51,6 +52,8 @@ export function ReviewEditor({ onExit }: Props) {
     },
   });
 
+  const router = useRouter();
+
   const onSubmit = handleSubmit(async (data) => {
     const postData = {
       class_id: Number(data.classId),
@@ -64,6 +67,7 @@ export function ReviewEditor({ onExit }: Props) {
       toast.success("投稿しました");
       reset();
       if (onExit) onExit();
+      router.refresh();
     } catch (error) {
       console.error(error);
       toast.error("投稿に失敗しました");
