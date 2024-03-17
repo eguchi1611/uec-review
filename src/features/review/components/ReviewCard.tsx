@@ -9,9 +9,11 @@ import IconStarBorder from "@mui/icons-material/StarBorder";
 import { Box, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import { amber, blue, grey, red } from "@mui/material/colors";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 import { Review } from "../types";
 import { NameLabelWithAvatar } from "./NameLabelWithAvatar";
 import { ReviewCardMenu } from "./ReviewCardMenu";
+import { ReviewCardShareDialog } from "./ReviewCardShareDialog";
 
 const ReviewCreatedAtLabel = dynamic(() => import("./ReviewCreatedAtLabel"), {
   ssr: false,
@@ -31,6 +33,8 @@ type Props = {
 
 export function ReviewCard({ review }: Props) {
   const { user } = useUser();
+
+  const [openShare, setOpenShare] = useState(false);
 
   return (
     <Paper sx={{ p: 2, position: "relative" }}>
@@ -73,9 +77,19 @@ export function ReviewCard({ review }: Props) {
             sx={{ width: 80 }}
             onClick={() => alert("これから実装する！")}
           ></Button>
-          <Button color="inherit" startIcon={<IconShare />} sx={{ mr: "auto" }}>
+          <Button
+            color="inherit"
+            startIcon={<IconShare />}
+            sx={{ mr: "auto" }}
+            onClick={() => setOpenShare(true)}
+          >
             共有
           </Button>
+          <ReviewCardShareDialog
+            onClose={() => setOpenShare(false)}
+            open={openShare}
+            review={review}
+          />
           <ReviewCreatedAtLabel createdAt={review.created_at} />
         </Box>
       </Stack>
