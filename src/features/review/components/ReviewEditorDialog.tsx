@@ -1,4 +1,12 @@
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import IconClear from "@mui/icons-material/Clear";
+import {
+  Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 import { useCallback } from "react";
 import { useReviewHelper } from "../hooks/useReviewHelper";
 import { Review } from "../types";
@@ -11,6 +19,8 @@ type Props = {
 };
 
 export function ReviewEditorDialog({ open, onClose, defaultValues }: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mobile = useMediaQuery((theme: any) => theme.breakpoints.down("md"));
   const { postReview, updateReview } = useReviewHelper();
 
   const handleSubmit = useCallback(
@@ -32,11 +42,26 @@ export function ReviewEditorDialog({ open, onClose, defaultValues }: Props) {
   );
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm" scroll="body">
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth="sm"
+      scroll="body"
+      fullScreen={mobile}
+    >
       <DialogTitle>
-        {defaultValues
-          ? `レビューを編集 (ID: ${defaultValues.id})`
-          : "レビューを投稿"}
+        <Box sx={{ position: "relative" }}>
+          {defaultValues
+            ? `レビューを編集 (ID: ${defaultValues.id})`
+            : "レビューを投稿"}
+          <IconButton
+            size="small"
+            sx={{ position: "absolute", top: 0, right: 0 }}
+            onClick={onClose}
+          >
+            <IconClear />
+          </IconButton>
+        </Box>
       </DialogTitle>
       <DialogContent>
         <ReviewEditor defaultValues={defaultValues} onSubmit={handleSubmit} />
