@@ -5,6 +5,8 @@ import { PropsWithChildren } from "react";
 import { Providers } from "./_components/Providers";
 import "./globals.css";
 
+export const revalidate = 60;
+
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ja">
