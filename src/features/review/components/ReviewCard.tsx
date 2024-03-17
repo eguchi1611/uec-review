@@ -5,7 +5,7 @@ import { useUser } from "@/features/auth/hooks/useUser";
 import IconBookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import IconImportContacts from "@mui/icons-material/ImportContacts";
 import IconShare from "@mui/icons-material/Share";
-import IconStar from "@mui/icons-material/Star";
+import IconStarBorder from "@mui/icons-material/StarBorder";
 import { Box, Button, Chip, Paper, Stack, Typography } from "@mui/material";
 import { amber, blue, grey, red } from "@mui/material/colors";
 import dynamic from "next/dynamic";
@@ -31,6 +31,7 @@ type Props = {
 
 export function ReviewCard({ review }: Props) {
   const { user } = useUser();
+
   return (
     <Paper sx={{ p: 2, position: "relative" }}>
       <StretchedLink href={`/reviews/${review.id}`} />
@@ -60,12 +61,18 @@ export function ReviewCard({ review }: Props) {
         </Box>
         <Typography>{review.message}</Typography>
         <Box display="flex" alignItems="end" gap={1}>
-          <Button color="primary" startIcon={<IconStar />}>
-            32
-          </Button>
-          <Button color="inherit" startIcon={<IconBookmarkBorder />}>
-            10
-          </Button>
+          <Button
+            color="inherit"
+            startIcon={<IconStarBorder />}
+            sx={{ width: 80 }}
+            onClick={() => alert("これから実装する！")}
+          ></Button>
+          <Button
+            color="inherit"
+            startIcon={<IconBookmarkBorder />}
+            sx={{ width: 80 }}
+            onClick={() => alert("これから実装する！")}
+          ></Button>
           <Button color="inherit" startIcon={<IconShare />} sx={{ mr: "auto" }}>
             共有
           </Button>
