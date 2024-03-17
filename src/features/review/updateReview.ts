@@ -1,7 +1,7 @@
 import { supabase } from "@/supabase/client";
-import { Tables } from "@/supabase/database.types";
+import { TablesUpdate } from "@/supabase/database.types";
 
-type Args = Omit<Tables<"reviews">, "id" | "user_id" | "created_at">;
+export type Args = TablesUpdate<"reviews">;
 
 export async function updateReview(args: Args, reviewId: number) {
   const { error, count } = await supabase
