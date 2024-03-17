@@ -6,6 +6,7 @@ import {
   DialogTitle,
   IconButton,
   useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { useCallback } from "react";
 import { useReviewHelper } from "../hooks/useReviewHelper";
@@ -19,8 +20,8 @@ type Props = {
 };
 
 export function ReviewEditorDialog({ open, onClose, defaultValues }: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mobile = useMediaQuery((theme: any) => theme.breakpoints.down("md"));
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
   const { postReview, updateReview } = useReviewHelper();
 
   const handleSubmit = useCallback(
