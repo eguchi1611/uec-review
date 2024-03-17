@@ -1,7 +1,5 @@
 import { Layout } from "@/components/Layout";
-import { ReviewCard } from "@/features/review/components/ReviewCard";
-import { getReviewById } from "@/features/review/getReviewById";
-import { notFound } from "next/navigation";
+import { ReviewCardWrapper } from "./ReviewCardWrapper";
 
 type Props = {
   params: {
@@ -10,13 +8,9 @@ type Props = {
 };
 
 export default async function ReviewPage({ params: { reviewId } }: Props) {
-  const { review } = await getReviewById(reviewId);
-
-  if (!review) notFound();
-
   return (
     <Layout>
-      <ReviewCard review={review} />
+      <ReviewCardWrapper reviewId={reviewId} />
     </Layout>
   );
 }
