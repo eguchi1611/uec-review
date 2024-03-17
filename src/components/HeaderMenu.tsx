@@ -34,7 +34,7 @@ export function HeaderMenu() {
         anchorEl={anchorEl}
         onClose={handleClose}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <MenuItem>
           <ListItemIcon>
