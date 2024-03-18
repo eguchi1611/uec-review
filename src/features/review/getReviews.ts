@@ -8,5 +8,7 @@ export async function getReviews() {
     .order("created_at", { ascending: false })
     .limit(50);
   if (error) throw error;
-  return { reviews: data };
+  return {
+    reviews: data,
+  };
 }
