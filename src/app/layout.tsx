@@ -41,4 +41,5 @@ export const metadata: Metadata = {
   alternates: {
     canonical: process.env.NEXT_PUBLIC_SITE_URL,
   },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
 };
