@@ -1,6 +1,7 @@
 import theme from "@/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { Metadata } from "next";
 import { PropsWithChildren } from "react";
 import { Providers } from "./_components/Providers";
 import "./globals.css";
@@ -21,3 +22,23 @@ export default function RootLayout({ children }: PropsWithChildren) {
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: {
+    default: "UEC Review",
+    template: "%s - UEC Review",
+  },
+  openGraph: {
+    type: "website",
+    title: "UEC Review",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    locale: "ja_JP",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "UEC Review",
+  },
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_SITE_URL,
+  },
+};

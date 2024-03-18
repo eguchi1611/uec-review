@@ -3,10 +3,11 @@
 import { getReviewById } from "@/features/review/getReviewById";
 import { ImageResponse } from "next/og";
 
-export async function GET(
-  _request: Request,
-  { params: { reviewId } }: { params: { reviewId: string } },
-) {
+export default async function Image({
+  params: { reviewId },
+}: {
+  params: { reviewId: string };
+}) {
   const { review } = await getReviewById(reviewId);
 
   try {
@@ -76,3 +77,10 @@ export async function GET(
     });
   }
 }
+
+export const alt = "Review";
+export const size = {
+  width: 1200,
+  height: 630,
+};
+export const contentType = "image/png";
