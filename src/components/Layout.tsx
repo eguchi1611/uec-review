@@ -57,7 +57,7 @@ export function Layout({ children }: PropsWithChildren) {
           pt: 10,
           gap: 3,
           overflow: "none",
-          pb: { xs: 12, md: 0 },
+          pb: 12,
         }}
       >
         <Box sx={{ display: { xs: "none", md: "block" } }}>
