@@ -1,6 +1,6 @@
 "use client";
 
-import { Stack } from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 import { Review } from "../types";
 import { ReviewCard } from "./ReviewCard";
 
@@ -10,7 +10,7 @@ type Props = {
 
 export function ReviewCardStack({ reviews }: Props) {
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} divider={<Divider flexItem />}>
       {reviews.map((review) => (
         <ReviewCard key={review.id} review={review} />
       ))}

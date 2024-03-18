@@ -6,7 +6,7 @@ import IconBookmarkBorder from "@mui/icons-material/BookmarkBorder";
 import IconImportContacts from "@mui/icons-material/ImportContacts";
 import IconShare from "@mui/icons-material/Share";
 import IconStarBorder from "@mui/icons-material/StarBorder";
-import { Box, Button, Chip, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Stack, Typography } from "@mui/material";
 import { amber, blue, grey, red } from "@mui/material/colors";
 import dynamic from "next/dynamic";
 import { useState } from "react";
@@ -37,7 +37,7 @@ export function ReviewCard({ review }: Props) {
   const [openShare, setOpenShare] = useState(false);
 
   return (
-    <Paper sx={{ p: 2, position: "relative" }}>
+    <Box sx={{ position: "relative" }}>
       <StretchedLink href={`/reviews/${review.id}`} />
       <Stack spacing={1}>
         <Box display="flex" alignItems="start">
@@ -93,6 +93,6 @@ export function ReviewCard({ review }: Props) {
           <ReviewCreatedAtLabel createdAt={review.created_at} />
         </Box>
       </Stack>
-    </Paper>
+    </Box>
   );
 }
