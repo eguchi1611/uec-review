@@ -63,7 +63,7 @@ export function ReviewCard({ review }: Props) {
             />
           )}
         </Box>
-        <Typography>{review.message}</Typography>
+        <Typography whiteSpace="pre-wrap">{review.message}</Typography>
         <Box display="flex" alignItems="end" gap={1}>
           <Button
             color="inherit"
