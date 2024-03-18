@@ -15,12 +15,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useMemo } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { Review } from "../types";
 
 type Props = {
   defaultValues?: Review;
-  onSubmit: (inputs: Inputs) => Promise<boolean>;
 };
 
 export type Inputs = {
@@ -31,10 +30,7 @@ export type Inputs = {
   message: string;
 };
 
-export function ReviewEditor({
-  defaultValues,
-  onSubmit: submitHandler,
-}: Props) {
+export function ReviewEditor({ defaultValues }: Props) {
   const { classes } = useClasses();
 
   const classData = useMemo(
@@ -44,33 +40,10 @@ export function ReviewEditor({
 
   const classOptions = useMemo(() => Object.keys(classData), [classData]);
 
-  const { control, handleSubmit, reset } = useForm<Inputs>({
-    defaultValues: defaultValues
-      ? {
-          classId: String(defaultValues.class_id),
-          year: String(defaultValues.year),
-          teacherName: defaultValues.teacher_name || "",
-          message: defaultValues.message,
-          result:
-            defaultValues.result != null ? String(defaultValues.result) : "-1",
-        }
-      : {
-          classId: null,
-          year: "",
-          teacherName: "",
-          message: "",
-          result: "",
-        },
-  });
-
-  const onSubmit = handleSubmit((data) => {
-    submitHandler(data).then(() => {
-      reset();
-    });
-  });
+  const { control } = useFormContext<Inputs>();
 
   return (
-    <Grid container spacing={2} component="form" onSubmit={onSubmit} noValidate>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography>投稿について不明な点はこちらをご覧ください</Typography>
       </Grid>
