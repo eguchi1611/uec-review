@@ -23,6 +23,12 @@ export function ReviewCardMenu({ review }: Props) {
 
   const { deleteReview } = useReviewHelper();
 
+  const handleDeleteReview = (reviewId: number) => {
+    if (confirm("削除を続行しますか")) {
+      deleteReview(reviewId);
+    }
+  };
+
   return (
     <>
       <IconButton sx={{ ml: "auto" }} onClick={handleClick}>
@@ -32,7 +38,9 @@ export function ReviewCardMenu({ review }: Props) {
         <MenuItem onClick={() => (setOpenEditor(true), handleClose())}>
           編集
         </MenuItem>
-        <MenuItem onClick={() => (deleteReview(review.id), handleClose())}>
+        <MenuItem
+          onClick={() => (handleDeleteReview(review.id), handleClose())}
+        >
           削除
         </MenuItem>
       </Menu>

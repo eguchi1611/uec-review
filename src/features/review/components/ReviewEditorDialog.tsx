@@ -61,11 +61,18 @@ export function ReviewEditorDialog({ open, onClose, defaultValues }: Props) {
     [onClose, defaultValues, postReview, updateReview, methods, isEdit],
   );
 
+  const handleClose = () => {
+    console.log(methods.formState.isDirty);
+    if (!methods.formState.isDirty || confirm("内容が保存されていません")) {
+      onClose();
+    }
+  };
+
   return (
     <FormProvider {...methods}>
       <Dialog
         open={open}
-        onClose={onClose}
+        onClose={handleClose}
         maxWidth="sm"
         scroll="body"
         fullScreen={mobile}
@@ -73,13 +80,13 @@ export function ReviewEditorDialog({ open, onClose, defaultValues }: Props) {
         <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
           <DialogTitle>
             <Box sx={{ position: "relative" }}>
-              {defaultValues
+              {isEdit
                 ? `レビューを編集 (ID: ${defaultValues.id})`
                 : "レビューを投稿"}
               <IconButton
                 size="small"
                 sx={{ position: "absolute", top: 0, right: 0 }}
-                onClick={onClose}
+                onClick={handleClose}
               >
                 <IconClear />
               </IconButton>
