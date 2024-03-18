@@ -10,14 +10,25 @@ export function ProfileListener() {
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (!session || event !== "INITIAL_SESSION") return;
       const { user } = session;
-      updateProfile({
-        id: user.id,
-        name: user.user_metadata.name,
-        avatar_url: user.user_metadata.avatar_url,
-      }).catch((error) => {
-        console.error(error);
-        toast.error("プロフィールの更新に失敗しました");
-      });
+      if (user.app_metadata.provider === "twitter") {
+        updateProfile({
+          id: user.id,
+          name: user.user_metadata.name,
+          avatar_url: user.user_metadata.avatar_url,
+        }).catch((error) => {
+          console.error(error);
+          toast.error("プロフィールの更新に失敗しました");
+        });
+      } else if (user.app_metadata.provider === "email") {
+        updateProfile({
+          id: user.id,
+          name: "Debug User (" + user.id + ")",
+          avatar_url: "/debug.png",
+        }).catch((error) => {
+          console.error(error);
+          toast.error("プロフィールの更新に失敗しました");
+        });
+      }
     });
 
     return () => {
