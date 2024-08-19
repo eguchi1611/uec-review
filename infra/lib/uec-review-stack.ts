@@ -44,12 +44,11 @@ export class UecReviewStack extends cdk.Stack {
       architecture: lambda.Architecture.X86_64,
       vpc: vpc,
       environment: {
-        HOST: "0.0.0.0",
-        PORT: "1337",
         DATABASE_CLIENT: "mysql",
         DATABASE_HOST: instance.instancePrivateIp,
         DATABASE_PORT: "3306",
         DATABASE_SSL: "false",
+        DATABASE_POOL_MIN: "0",
 
         DATABASE_NAME: process.env.STRAPI_DATABASE_NAME || "",
         DATABASE_USERNAME: process.env.STRAPI_DATABASE_USERNAME || "",
@@ -59,6 +58,8 @@ export class UecReviewStack extends cdk.Stack {
         ADMIN_JWT_SECRET: process.env.STRAPI_ADMIN_JWT_SECRET || "",
         TRANSFER_TOKEN_SALT: process.env.STRAPI_TRANSFER_TOKEN_SALT || "",
         JWT_SECRET: process.env.STRAPI_JWT_SECRET || "",
+
+        FLAG_PROMOTE_EE: "false",
       },
       memorySize: 512,
       timeout: cdk.Duration.seconds(30),
