@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec npm start
+exec pm2-runtime start ecosystem.config.js

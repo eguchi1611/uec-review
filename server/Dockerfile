@@ -18,6 +18,7 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt
 ENV PORT=1337 HOME=/tmp
 
 WORKDIR /app
+RUN npm install pm2 -g
 COPY --from=builder /app/dist ./dist
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
