@@ -1,0 +1,11 @@
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
+    env_file:
+      - .env
+    environment:
+      DATABASE_HOST: db
