@@ -27,7 +27,6 @@ export class UecReviewStack extends cdk.Stack {
       vpc: vpc,
     });
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(22));
-    securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80));
 
     const instance = new ec2.Instance(this, "MyInstance", {
       vpc: vpc,
@@ -41,16 +40,34 @@ export class UecReviewStack extends cdk.Stack {
     });
 
     const func = new lambda.DockerImageFunction(this, "MyFunction", {
-      code: lambda.DockerImageCode.fromImageAsset("../app"),
+      code: lambda.DockerImageCode.fromImageAsset("../server"),
       architecture: lambda.Architecture.X86_64,
       vpc: vpc,
       environment: {
-        SERVER_IP: instance.instancePrivateIp,
+        HOST: "0.0.0.0",
+        PORT: "1337",
+        DATABASE_CLIENT: "mysql",
+        DATABASE_HOST: instance.instancePrivateIp,
+        DATABASE_PORT: "3306",
+        DATABASE_SSL: "false",
+
+        DATABASE_NAME: process.env.STRAPI_DATABASE_NAME || "",
+        DATABASE_USERNAME: process.env.STRAPI_DATABASE_USERNAME || "",
+        DATABASE_PASSWORD: process.env.STRAPI_DATABASE_PASSWORD || "",
+        APP_KEYS: process.env.STRAPI_APP_KEYS || "",
+        API_TOKEN_SALT: process.env.STRAPI_API_TOKEN_SALT || "",
+        ADMIN_JWT_SECRET: process.env.STRAPI_ADMIN_JWT_SECRET || "",
+        TRANSFER_TOKEN_SALT: process.env.STRAPI_TRANSFER_TOKEN_SALT || "",
+        JWT_SECRET: process.env.STRAPI_JWT_SECRET || "",
       },
+      memorySize: 512,
+      timeout: cdk.Duration.seconds(30),
     });
     const functionUrl = func.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
     });
+
+    securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(3306));
 
     new cdk.CfnOutput(this, "FunctionUrl", {
       value: functionUrl.url,
