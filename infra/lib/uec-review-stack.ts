@@ -61,6 +61,7 @@ export class UecReviewStack extends cdk.Stack {
         TRANSFER_TOKEN_SALT: process.env.STRAPI_TRANSFER_TOKEN_SALT || "",
         JWT_SECRET: process.env.STRAPI_JWT_SECRET || "",
 
+        SWAGGER_ENABLED: "false",
         FLAG_PROMOTE_EE: "false",
       },
       memorySize: 512,
@@ -70,7 +71,10 @@ export class UecReviewStack extends cdk.Stack {
       authType: lambda.FunctionUrlAuthType.NONE,
     });
 
-    securityGroup.addIngressRule(ec2.Peer.ipv4(vpc.vpcCidrBlock), ec2.Port.MYSQL_AURORA);
+    securityGroup.addIngressRule(
+      ec2.Peer.ipv4(vpc.vpcCidrBlock),
+      ec2.Port.MYSQL_AURORA
+    );
 
     // new cloudfront.Distribution(this, "MyDistribution", {
     //   defaultBehavior: {

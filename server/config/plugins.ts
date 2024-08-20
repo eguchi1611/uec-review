@@ -1,5 +1,5 @@
-export default () => ({
+export default ({ env }) => ({
   documentation: {
-    enabled: false,
+    enabled: env.bool("SWAGGER_ENABLED", true),
   },
 });
