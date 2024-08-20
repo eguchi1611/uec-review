@@ -70,7 +70,7 @@ export class UecReviewStack extends cdk.Stack {
       authType: lambda.FunctionUrlAuthType.NONE,
     });
 
-    securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(3306));
+    securityGroup.addIngressRule(ec2.Peer.ipv4(vpc.vpcCidrBlock), ec2.Port.MYSQL_AURORA);
 
     // new cloudfront.Distribution(this, "MyDistribution", {
     //   defaultBehavior: {
