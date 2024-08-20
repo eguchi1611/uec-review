@@ -3,8 +3,8 @@ import { Construct } from "constructs";
 
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as lambda from "aws-cdk-lib/aws-lambda";
-import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
-import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+// import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+// import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 
 export class UecReviewStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -72,16 +72,16 @@ export class UecReviewStack extends cdk.Stack {
 
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(3306));
 
-    new cloudfront.Distribution(this, "MyDistribution", {
-      defaultBehavior: {
-        origin: new origins.FunctionUrlOrigin(functionUrl),
-        cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
-        originRequestPolicy:
-          cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
-        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-        allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
-      },
-    });
+    // new cloudfront.Distribution(this, "MyDistribution", {
+    //   defaultBehavior: {
+    //     origin: new origins.FunctionUrlOrigin(functionUrl),
+    //     cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
+    //     originRequestPolicy:
+    //       cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
+    //     viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+    //     allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+    //   },
+    // });
 
     new cdk.CfnOutput(this, "FunctionUrl", {
       value: functionUrl.url,
